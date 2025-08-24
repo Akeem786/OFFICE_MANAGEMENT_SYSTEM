@@ -1,0 +1,697 @@
+/* ===== Reset & Global Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f6f9fc;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ===== Homepage (index.html) Styles ===== */
+body.home-page {
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    color: #333;
+}
+
+.container.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container.center h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.container.center p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    padding: 12px 25px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+/* ===== Dashboard (home.html) Styles ===== */
+body.dashboard-page {
+    background: linear-gradient(135deg, #dfe9f3, #ffffff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.dashboard-page .navbar {
+    background: #34495e;
+    padding: 20px 40px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logout-btn {
+    color: white;
+    background: #e74c3c;
+    padding: 10px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #c0392b;
+}
+
+/* Dashboard Cards */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    justify-content: center;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card i {
+    font-size: 40px;
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    background: #f9f9f9;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+    .dashboard {
+        padding: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+
+    .card {
+        padding: 30px 15px;
+    }
+
+    .navbar h1 {
+        font-size: 18px;
+    }
+
+    .logout-btn {
+        padding: 8px 14px;
+        font-size: 14px;
+    }
+}
+
+/* Employees Section */
+.employees-section {
+    padding: 40px;
+}
+
+.employee-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.search-input {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 250px;
+    font-size: 1rem;
+}
+
+.add-btn {
+    background: #27ae60;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.add-btn:hover {
+    background: #1e8449;
+}
+
+.employee-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.employee-table th,
+.employee-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 14px;
+}
+
+.employee-table th {
+    background: #ecf0f1;
+    font-weight: 600;
+}
+
+.btn-sm {
+    padding: 6px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-sm.edit {
+    background: #2980b9;
+}
+
+.btn-sm.edit:hover {
+    background: #2471a3;
+}
+
+.btn-sm.delete {
+    background: #c0392b;
+}
+
+.btn-sm.delete:hover {
+    background: #a93226;
+}
+
+/* Form grid for add/edit */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    padding: 40px;
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.form-grid label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-grid input,
+.form-grid select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.form-actions {
+    margin-top: 10px;
+}
+
+/* ===== Departments Section ===== */
+.departments-section {
+    padding: 40px;
+}
+
+/* Controls (Search + Add) */
+.department-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.department-controls .search-input {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 250px;
+    font-size: 1rem;
+}
+
+.department-controls .btn.add-btn {
+    background: #27ae60;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.department-controls .btn.add-btn:hover {
+    background: #1e8449;
+}
+
+/* Table */
+.department-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.department-table th,
+.department-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 14px;
+}
+
+.department-table th {
+    background: #ecf0f1;
+    font-weight: 600;
+}
+
+/* Small Action Buttons */
+.btn-sm {
+    padding: 6px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-sm.edit {
+    background: #2980b9;
+}
+
+.btn-sm.edit:hover {
+    background: #2471a3;
+}
+
+.btn-sm.delete {
+    background: #c0392b;
+}
+
+.btn-sm.delete:hover {
+    background: #a93226;
+}
+
+/* ===== Add/Edit Forms ===== */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    padding: 40px;
+    max-width: 800px;
+    margin: auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.form-grid label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-grid input,
+.form-grid textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.form-actions {
+    grid-column: span 2;
+    text-align: right;
+}
+
+.form-actions .btn.add-btn {
+    background: #27ae60;
+}
+
+.form-actions .btn.add-btn:hover {
+    background: #1e8449;
+}
+
+/* Flash message styles */
+.flash-container .alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.flash-container .alert.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash-container .alert.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Button styles */
+.btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2rem;
+    color: #222;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Add Project Button */
+a[href*="add"] {
+    display: inline-block;
+    margin-left: 20px;
+    padding: 10px 16px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+a[href*="add"]:hover {
+    background-color: #218838;
+}
+
+/* Table Styling */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: 600;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table td a {
+    margin: 0 5px;
+    font-size: 1.2rem;
+}
+
+/* Form Styling */
+form {
+    width: 90%;
+    max-width: 500px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+}
+
+form input[type="text"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    resize: none;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+form {
+    width: 90%;
+    max-width: 500px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.08);
+}
+
+form input[type="text"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    resize: none;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+/* Tasks Section */
+.tasks-section {
+    padding: 40px;
+  }
+  
+  .section-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+  /* Form grid and table-container already styled from previous modules */
+  .table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .table-container th,
+  .table-container td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+  }
+  
+  .table-container th {
+    background: #ecf0f1;
+    font-weight: 600;
+  }
+  .attendance-section {
+    padding: 40px;
+  }
+/* Leaves Section */
+.leaves-section {
+    padding: 40px;
+  }  
+
+  /* Assets Section */
+.assets-section {
+    padding: 40px;
+  }
+  /* Notices Section */
+.notices-section {
+    padding: 40px;
+  }
+/* Complaints Section */
+.complaints-section {
+    padding: 40px;
+  }
+  /* style.css */
+
+/* Table responsiveness */
+.table-container {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Add hover effect to rows */
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Make action buttons inline and responsive */
+  .btn-sm {
+    margin-right: 10px;
+  }
+  
+  /* For smaller screens */
+  @media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+  
+    table th {
+      background-color: transparent;
+      color: #333;
+      font-weight: bold;
+    }
+  
+    table td {
+      position: relative;
+      padding-left: 50%;
+    }
+  
+    table td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      font-weight: bold;
+    }
+  }
+  
+  /* Search bar style */
+  .search-container {
+    margin-bottom: 20px;
+  }
+  
+  #user-search {
+    padding: 8px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+    

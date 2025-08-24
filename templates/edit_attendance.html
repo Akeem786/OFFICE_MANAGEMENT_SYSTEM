@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Attendance | Office Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+  <header class="navbar">
+    <h1><i class="fa-solid fa-pen"></i> Edit Attendance</h1>
+    <a href="{{ url_for('attendance') }}" class="logout-btn">Back to Attendance</a>
+  </header>
+
+  <main class="form-grid">
+    <form method="POST">
+      <div>
+        <label>Employee</label>
+        <select name="employee_id" required>
+          {% for e in employees %}
+          <option value="{{ e.id }}" {% if e.id == record.employee_id %}selected{% endif %}>{{ e.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label>Date</label>
+        <input type="date" name="date" value="{{ record.date }}" required>
+      </div>
+      <div>
+        <label>Status</label>
+        <select name="status" required>
+          {% for s in ['Present','Absent','Leave'] %}
+          <option {% if record.status == s %}selected{% endif %}>{{ s }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn add-btn">Update Record</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!-- templates/assets.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assets | Office Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+  <header class="navbar">
+    <h1>Assets</h1>
+    <a href="{{ url_for('home') }}" class="logout-btn">Back to Dashboard</a>
+  </header>
+
+  <main class="assets-section">
+    <div class="section-controls">
+      <form method="get" action="{{ url_for('assets') }}">
+        <input type="text" name="search" placeholder="Search by name or status..." class="search-input" value="{{ search }}">
+        <button type="submit" class="btn add-btn">Search</button>
+      </form>
+      <a href="{{ url_for('add_asset') }}" class="btn add-btn">➕ Add Asset</a>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-container">
+          {% for category, msg in messages %}
+            <div class="alert alert-{{ category }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>Name</th><th>Description</th><th>Purchase Date</th><th>Status</th><th>Assigned Employee</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in records %}
+          <tr>
+            <td>{{ r.id }}</td>
+            <td>{{ r.name }}</td>
+            <td>{{ r.description }}</td>
+            <td>{{ r.purchase_date }}</td>
+            <td>{{ r.status }}</td>
+            <td>{{ r.assigned_employee if r.assigned_employee else 'N/A' }}</td>
+            <td>
+              <a href="{{ url_for('edit_asset', id=r.id) }}" class="btn-sm edit">✏️</a>
+              <a href="{{ url_for('delete_asset', id=r.id) }}" class="btn-sm delete" onclick="return confirm('Delete this asset?');">🗑️</a>
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="7" style="text-align:center;">No assets found.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

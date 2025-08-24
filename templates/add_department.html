@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Add Department | Office Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="dashboard-page">
+  <header class="navbar">
+    <h1><i class="fa-solid fa-plus-circle"></i> Add Department</h1>
+    <!-- Fixed endpoint name here -->
+    <a href="{{ url_for('departments') }}" class="logout-btn">Back to Departments</a>
+  </header>
+
+  <main class="form-grid">
+    <form method="POST">
+      <div>
+        <label for="name">Department Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div>
+        <label for="description">Department Description:</label>
+        <textarea id="description" name="description" required></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn add-btn">
+          <i class="fa-solid fa-check"></i> Save Department
+        </button>
+      </div>
+    </form>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Attendance | Office Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+  <header class="navbar">
+    <h1><i class="fa-solid fa-plus-circle"></i> Add Attendance</h1>
+    <a href="{{ url_for('attendance') }}" class="logout-btn">Back to Attendance</a>
+  </header>
+
+  <main class="form-grid">
+    <form method="POST">
+      <div>
+        <label>Employee</label>
+        <select name="employee_id" required>
+          <option value="">— Select —</option>
+          {% for e in employees %}
+          <option value="{{ e.id }}">{{ e.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label>Date</label>
+        <input type="date" name="date" required>
+      </div>
+      <div>
+        <label>Status</label>
+        <select name="status" required>
+          <option>Present</option>
+          <option>Absent</option>
+          <option>Leave</option>
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn add-btn">Save Record</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

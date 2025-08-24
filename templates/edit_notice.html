@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Notice | Office Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+  <header class="navbar">
+    <h1><i class="fa-solid fa-pen"></i> Edit Notice</h1>
+    <a href="{{ url_for('notices') }}" class="logout-btn">Back to Notices</a>
+  </header>
+
+  <main class="form-grid">
+    <form method="POST">
+      <div>
+        <label>Title</label>
+        <input type="text" name="title" value="{{ notice.title }}" required>
+      </div>
+      <div>
+        <label>Description</label>
+        <textarea name="description" required>{{ notice.description }}</textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn add-btn"><i class="fa-solid fa-check"></i> Update Notice</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tasks | Office Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+  <header class="navbar">
+    <h1><i class="fa-solid fa-tasks"></i> Tasks</h1>
+    <a href="{{ url_for('home') }}" class="logout-btn">Back to Dashboard</a>
+  </header>
+
+  <main class="tasks-section">
+    <div class="section-controls">
+      <form method="get" action="{{ url_for('tasks') }}">
+        <input type="text" name="search" placeholder="Search tasks..." class="search-input" value="{{ search }}">
+        <button type="submit" class="btn add-btn"><i class="fa-solid fa-search"></i></button>
+      </form>
+      <a href="{{ url_for('add_task') }}" class="btn add-btn">
+        <i class="fa-solid fa-plus-circle"></i> Add Task
+      </a>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-container">
+          {% for category, msg in messages %}
+            <div class="alert alert-{{ category }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>Title</th><th>Description</th>
+            <th>Due Date</th><th>Status</th><th>Employee</th><th>Project</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for t in tasks %}
+          <tr>
+            <td>{{ t.id }}</td>
+            <td>{{ t.title }}</td>
+            <td>{{ t.description }}</td>
+            <td>{{ t.due_date }}</td>
+            <td>{{ t.status }}</td>
+            <td>{{ t.employee_name or '—' }}</td>
+            <td>{{ t.project_title or '—' }}</td>
+            <td>
+              <a href="{{ url_for('edit_task', id=t.id) }}" class="btn-sm edit"><i class="fa-solid fa-pen"></i></a>
+              <a href="{{ url_for('delete_task', id=t.id) }}" class="btn-sm delete" onclick="return confirm('Delete this task?');"><i class="fa-solid fa-trash"></i></a>
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="8" style="text-align:center;">No tasks found.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

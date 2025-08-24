@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Task | Office Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+  <header class="navbar">
+    <h1><i class="fa-solid fa-pen"></i> Edit Task</h1>
+    <a href="{{ url_for('tasks') }}" class="logout-btn">Back to Tasks</a>
+  </header>
+
+  <main class="form-grid">
+    <form method="POST">
+      <div>
+        <label>Title</label>
+        <input type="text" name="title" value="{{ task.title }}" required>
+      </div>
+      <div>
+        <label>Description</label>
+        <textarea name="description" required>{{ task.description }}</textarea>
+      </div>
+      <div>
+        <label>Due Date</label>
+        <input type="date" name="due_date" value="{{ task.due_date }}" required>
+      </div>
+      <div>
+        <label>Status</label>
+        <select name="status" required>
+          {% for s in ['Pending','In Progress','Done'] %}
+          <option value="{{ s }}" {% if task.status==s %}selected{% endif %}>{{ s }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label>Employee</label>
+        <select name="employee_id">
+          <option value="">— Unassigned —</option>
+          {% for e in employees %}
+          <option value="{{ e.id }}" {% if task.employee_id==e.id %}selected{% endif %}>{{ e.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label>Project</label>
+        <select name="project_id">
+          <option value="">— None —</option>
+          {% for p in projects %}
+          <option value="{{ p.id }}" {% if task.project_id==p.id %}selected{% endif %}>{{ p.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn add-btn"><i class="fa-solid fa-check"></i> Update Task</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

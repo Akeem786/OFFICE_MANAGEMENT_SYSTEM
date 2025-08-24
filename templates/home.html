@@ -1,0 +1,40 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | Office Management System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="dashboard-page">
+
+  <header class="navbar">
+    <h1><i class="fa-solid fa-building-user"></i> Office Management</h1>
+    <a href="{{ url_for('index') }}" class="logout-btn">Logout</a>
+  </header>
+
+  <main class="dashboard">
+    {% set sections = [
+      ('Employees', 'fa-users', 'employees'),
+      ('Departments', 'fa-sitemap', 'departments'),
+      ('Projects', 'fa-diagram-project', 'projects'),
+      ('Tasks', 'fa-tasks', 'tasks'),
+      ('Attendance', 'fa-calendar-check', 'attendance'),
+      ('Leaves', 'fa-plane-departure', 'leaves'),
+      ('Assets', 'fa-boxes-stacked', 'assets'),
+      ('Notices', 'fa-bullhorn', 'notices'),
+      ('Complaints', 'fa-exclamation-triangle', 'complaints'),
+      ('Users', 'fa-user-cog', 'users')
+    ] %}
+
+    {% for name, icon, route in sections %}
+      <a href="{{ url_for(route) }}" class="card">
+        <i class="fa-solid {{ icon }}"></i>
+        <h2>{{ name }}</h2>
+      </a>
+    {% endfor %}
+  </main>
+
+</body>
+</html>

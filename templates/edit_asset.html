@@ -1,0 +1,51 @@
+<!-- templates/edit_asset.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Asset | Office Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+  <header class="navbar">
+    <h1>Edit Asset</h1>
+    <a href="{{ url_for('assets') }}" class="logout-btn">Back to Assets</a>
+  </header>
+
+  <main class="form-grid">
+    <form method="POST">
+      <div>
+        <label>Name</label>
+        <input type="text" name="name" value="{{ record.name }}" required>
+      </div>
+      <div>
+        <label>Description</label>
+        <textarea name="description" required>{{ record.description }}</textarea>
+      </div>
+      <div>
+        <label>Purchase Date</label>
+        <input type="date" name="purchase_date" value="{{ record.purchase_date }}" required>
+      </div>
+      <div>
+        <label>Status</label>
+        <select name="status" required>
+          <option {% if record.status == 'Active' %}selected{% endif %}>Active</option>
+          <option {% if record.status == 'Inactive' %}selected{% endif %}>Inactive</option>
+        </select>
+      </div>
+      <div>
+        <label>Assigned Employee</label>
+        <select name="employee_id">
+          <option value="">— None —</option>
+          {% for e in employees %}
+          <option value="{{ e.id }}" {% if e.id == record.employee_id %}selected{% endif %}>{{ e.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn add-btn">Update Asset</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

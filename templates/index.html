@@ -1,0 +1,16 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Office Management System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="home-page">
+  <div class="container center">
+    <h1>Welcome to Office Management System</h1>
+    <p>Manage everything from Employees to Projects in one place.</p>
+    <a href="{{ url_for('home') }}" class="btn">Enter Dashboard</a>
+  </div>
+</body>
+</html>

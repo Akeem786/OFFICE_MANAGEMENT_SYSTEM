@@ -1,0 +1,52 @@
+<!-- templates/add_leaves.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Leave | Office Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+  <header class="navbar">
+    <h1>Add Leave Request</h1>
+    <a href="{{ url_for('leaves') }}" class="logout-btn">Back to Leaves</a>
+  </header>
+
+  <main class="form-grid">
+    <form method="POST">
+      <div>
+        <label>Employee</label>
+        <select name="employee_id" required>
+          <option value="">— Select —</option>
+          {% for e in employees %}
+          <option value="{{ e.id }}">{{ e.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label>Start Date</label>
+        <input type="date" name="start_date" required>
+      </div>
+      <div>
+        <label>End Date</label>
+        <input type="date" name="end_date" required>
+      </div>
+      <div>
+        <label>Reason</label>
+        <textarea name="reason" required></textarea>
+      </div>
+      <div>
+        <label>Status</label>
+        <select name="status" required>
+          <option>Pending</option>
+          <option>Approved</option>
+          <option>Rejected</option>
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn add-btn">Save Leave</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

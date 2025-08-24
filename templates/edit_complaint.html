@@ -1,0 +1,39 @@
+<!-- templates/edit_complaint.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Complaint | Office Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+  <header class="navbar">
+    <h1>Edit Complaint</h1>
+    <a href="{{ url_for('complaints') }}" class="logout-btn">Back to Complaints</a>
+  </header>
+
+  <main class="form-grid">
+    <form method="POST">
+      <div>
+        <label>Title</label>
+        <input type="text" name="title" value="{{ complaint.title }}" required>
+      </div>
+      <div>
+        <label>Description</label>
+        <textarea name="description" required>{{ complaint.description }}</textarea>
+      </div>
+      <div>
+        <label>Status</label>
+        <select name="status" required>
+          {% for s in ['Pending','Resolved','Rejected'] %}
+          <option {% if complaint.status == s %}selected{% endif %}>{{ s }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn add-btn"><i class="fa-solid fa-check"></i> Update</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

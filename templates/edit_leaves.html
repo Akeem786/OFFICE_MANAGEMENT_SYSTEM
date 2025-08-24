@@ -1,0 +1,51 @@
+<!-- templates/edit_leaves.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Leave | Office Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+  <header class="navbar">
+    <h1>Edit Leave Request</h1>
+    <a href="{{ url_for('leaves') }}" class="logout-btn">Back to Leaves</a>
+  </header>
+
+  <main class="form-grid">
+    <form method="POST">
+      <div>
+        <label>Employee</label>
+        <select name="employee_id" required>
+          {% for e in employees %}
+          <option value="{{ e.id }}" {% if e.id == record.employee_id %}selected{% endif %}>{{ e.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label>Start Date</label>
+        <input type="date" name="start_date" value="{{ record.start_date }}" required>
+      </div>
+      <div>
+        <label>End Date</label>
+        <input type="date" name="end_date" value="{{ record.end_date }}" required>
+      </div>
+      <div>
+        <label>Reason</label>
+        <textarea name="reason" required>{{ record.reason }}</textarea>
+      </div>
+      <div>
+        <label>Status</label>
+        <select name="status" required>
+          {% for s in ['Pending','Approved','Rejected'] %}
+          <option {% if record.status == s %}selected{% endif %}>{{ s }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn add-btn">Update Leave</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

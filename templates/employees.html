@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employees | Office Management</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+  <header class="navbar">
+    <h1><i class="fa-solid fa-users"></i> Employees</h1>
+    <a href="{{ url_for('home') }}" class="logout-btn">Back to Dashboard</a>
+  </header>
+
+  <main class="employees-section">
+    <div class="employee-controls">
+      <!-- Search Form -->
+      <form action="{{ url_for('search_employee') }}" method="get" style="display:flex; gap:10px;">
+        <input type="text" name="keyword" value="{{ request.args.get('keyword','') }}"
+               placeholder="Search employees..." class="search-input">
+        <button type="submit" class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+      <!-- Add Employee -->
+      <a href="{{ url_for('add_employee') }}" class="btn add-btn">
+        <i class="fa-solid fa-user-plus"></i> Add Employee
+      </a>
+    </div>
+
+    <div class="employee-table">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>Name</th><th>Email</th><th>Phone</th>
+            <th>Department</th><th>Designation</th><th>Salary</th>
+            <th>Join Date</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for emp in employees %}
+          <tr>
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.email }}</td>
+            <td>{{ emp.phone }}</td>
+            <td>{{ emp.department_name }}</td>
+            <td>{{ emp.designation }}</td>
+            <td>{{ emp.salary }}</td>
+            <td>{{ emp.join_date }}</td>
+            <td>
+              <a href="{{ url_for('edit_employee', id=emp.id) }}" class="btn-sm edit">
+                <i class="fa-solid fa-pen"></i>
+              </a>
+              <a href="{{ url_for('delete_employee', id=emp.id) }}" class="btn-sm delete"
+                 onclick="return confirm('Are you sure?');">
+                <i class="fa-solid fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="9" style="text-align:center;">No employees found.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <h2>Edit Project</h2>
+    <form method="POST">
+        <input type="text" name="title" value="{{ project.title }}" placeholder="Project Title" required>
+        <textarea name="description" placeholder="Project Description" required>{{ project.description }}</textarea>
+        <select name="status" required>
+            <option value="Not Started" {% if project.status == 'Not Started' %}selected{% endif %}>Not Started</option>
+            <option value="In Progress" {% if project.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+            <option value="Completed" {% if project.status == 'Completed' %}selected{% endif %}>Completed</option>
+        </select>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
